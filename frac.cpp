@@ -5,10 +5,10 @@
 // Copyright 2017 Seong Yong-ju
 
 class Frac {
-private:
+ private:
   int a, b;
 
-public:
+ public:
   Frac(int num) {
     a = num;
     b = 1;
@@ -22,6 +22,12 @@ public:
   Frac &operator=(const Frac &f) {
     a = f.a;
     b = f.b;
+    return *this;
+  }
+
+  Frac &operator+=(const Frac &f) {
+    a += f.a;
+    b += f.b;
     return *this;
   }
 
@@ -44,6 +50,12 @@ public:
   }
 };
 
+Frac operator+(const Frac &f1, const Frac &f2) {
+  Frac ret = f1;
+  ret += f1;
+  return ret;
+}
+
 Frac operator*(const Frac &f1, const Frac &f2) {
   Frac ret = f1;
   ret *= f1;
@@ -53,7 +65,7 @@ Frac operator*(const Frac &f1, const Frac &f2) {
 int main() {
   Frac a(1, 2);
   Frac b(1, 3);
-  // Frac c = a + b;
+  Frac c = a + b;
   Frac d = a * b;
   Frac e = d * 15;
   // Frac f = e.reduce();
@@ -61,7 +73,7 @@ int main() {
   // Frac h = g.reduce();
   printf("a = %s\n", a.str().c_str());
   printf("b = %s\n", b.str().c_str());
-  // printf("c = %s\n", c.str().c_str());
+  printf("c = %s\n", c.str().c_str());
   printf("d = %s\n", d.str().c_str());
   printf("e = %s\n", e.str().c_str());
   // printf("f = %s\n", f.str().c_str());
