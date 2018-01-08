@@ -9,7 +9,7 @@ class Frac {
   int a, b;
 
  public:
-  Frac(int num) {
+  explicit Frac(int num) {
     a = num;
     b = 1;
   }
@@ -67,7 +67,7 @@ int main() {
   Frac b(1, 3);
   Frac c = a + b;
   Frac d = a * b;
-  Frac e = d * 15;
+  Frac e = d * Frac(15);
   // Frac f = e.reduce();
   // Frac g = f * 2;
   // Frac h = g.reduce();
