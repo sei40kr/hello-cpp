@@ -4,12 +4,20 @@
 // author: Seong Yong-ju ( @sei40kr )
 // Copyright 2017 Seong Yong-ju
 
+int gcd(int n, int m) {
+  if (n % m == 0) {
+    return m;
+  }
+
+  return gcd(m, n % m);
+}
+
 class Frac {
  private:
   int a, b;
 
  public:
-  explicit Frac(int num) {
+  Frac(int num) {
     a = num;
     b = 1;
   }
@@ -37,13 +45,21 @@ class Frac {
     return *this;
   }
 
+  Frac reduce() const {
+    Frac ret = *this;
+    int d = gcd(a, b);
+    ret.a /= d;
+    ret.b /= d;
+    return ret;
+  }
+
   std::string str() const {
     char buf[32];
 
     if (b == 1) {
       snprintf(buf, sizeof(buf), "%d", a);
     } else {
-      snprintf(buf, sizeof(buf), "%d", b);
+      snprintf(buf, sizeof(buf), "%d/%d", a, b);
     }
 
     return buf;
@@ -68,15 +84,15 @@ int main() {
   Frac c = a + b;
   Frac d = a * b;
   Frac e = d * Frac(15);
-  // Frac f = e.reduce();
-  // Frac g = f * 2;
-  // Frac h = g.reduce();
+  Frac f = e.reduce();
+  Frac g = f * 2;
+  Frac h = g.reduce();
   printf("a = %s\n", a.str().c_str());
   printf("b = %s\n", b.str().c_str());
   printf("c = %s\n", c.str().c_str());
   printf("d = %s\n", d.str().c_str());
   printf("e = %s\n", e.str().c_str());
-  // printf("f = %s\n", f.str().c_str());
-  // printf("g = %s\n", g.str().c_str());
-  // printf("h = %s\n", h.str().c_str());
+  printf("f = %s\n", f.str().c_str());
+  printf("g = %s\n", g.str().c_str());
+  printf("h = %s\n", h.str().c_str());
 }
