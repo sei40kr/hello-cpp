@@ -6,10 +6,10 @@
 // Copyright (c) 2017 Seong Yong-ju
 
 class Complex {
-private:
+ private:
   int a, b;
 
-public:
+ public:
   Complex(int real) {
     a = real;
     b = 0;
@@ -50,10 +50,8 @@ public:
     if (b == 0) {
       snprintf(buf, sizeof(buf), "%d", a);
     } else if (a == 0) {
-      if (b == -1)
-        return "-i";
-      if (b == 1)
-        return "i";
+      if (b == -1) return "-i";
+      if (b == 1) return "i";
       snprintf(buf, sizeof(buf), "%di", b);
     } else if (b == -1) {
       snprintf(buf, sizeof(buf), "%d-i", a);
